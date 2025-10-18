@@ -1,0 +1,430 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffaaaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: colorChange 5s infinite alternate;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideUp 1.5s ease-out;
+            line-height: 1.6;
+        }
+
+        .heart {
+            color: #ff6b6b;
+            font-size: 2rem;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: balloon-float 15s linear infinite;
+            z-index: 0;
+        }
+
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .balloon:nth-child(2n) {
+            background: rgba(255, 182, 193, 0.7);
+            animation-delay: 2s;
+            left: 10%;
+        }
+
+        .balloon:nth-child(3n) {
+            background: rgba(173, 216, 230, 0.7);
+            animation-delay: 4s;
+            left: 20%;
+        }
+
+        .balloon:nth-child(4n) {
+            background: rgba(144, 238, 144, 0.7);
+            animation-delay: 6s;
+            left: 30%;
+        }
+
+        .balloon:nth-child(5n) {
+            background: rgba(221, 160, 221, 0.7);
+            animation-delay: 8s;
+            left: 40%;
+        }
+
+        .balloon:nth-child(6n) {
+            background: rgba(255, 255, 224, 0.7);
+            animation-delay: 10s;
+            left: 60%;
+        }
+
+        .balloon:nth-child(7n) {
+            background: rgba(255, 192, 203, 0.7);
+            animation-delay: 12s;
+            left: 70%;
+        }
+
+        .balloon:nth-child(8n) {
+            background: rgba(173, 216, 230, 0.7);
+            animation-delay: 14s;
+            left: 80%;
+        }
+
+        .balloon:nth-child(9n) {
+            background: rgba(255, 182, 193, 0.7);
+            animation-delay: 16s;
+            left: 90%;
+        }
+
+        .hidden-message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .hidden-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes balloon-float {
+            0% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes colorChange {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .message {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Happy Birthday, My Love!</h1>
+            <h2>To the most amazing girlfriend in the world</h2>
+        </div>
+        
+        <div class="photo-frame">
+            <!-- Replace with your girlfriend's photo -->
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmY5YTliIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPllvdXIgUGhvdG8gSGVyZTwvdGV4dD48L3N2Zz4=" alt="Your Photo">
+        </div>
+        
+        <div class="message">
+            <p>My dearest,</p>
+            <p>On this special day, I want you to know how incredibly grateful I am to have you in my life. You bring so much joy, laughter, and love into my world.</p>
+            <p>You're not just my girlfriend, you're my best friend, my confidante, and my greatest blessing. I cherish every moment we spend together.</p>
+            <p>Today, I hope you feel as special as you are. May your birthday be filled with all the happiness you bring to others.</p>
+            <p>With all my love,</p>
+            <p>Your boyfriend <span class="heart">❤️</span></p>
+        </div>
+        
+        <div class="gallery">
+            <!-- Replace with your photos together -->
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZjYmNjIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk1lbW9yeSAxPC90ZXh0Pjwvc3ZnPg==" alt="Memory 1">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjYzdlZmZmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk1lbW9yeSAyPC90ZXh0Pjwvc3ZnPg==" alt="Memory 2">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZjYmNjIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk1lbW9yeSAzPC90ZXh0Pjwvc3ZnPg==" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjYzdlZmZmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk1lbW9yeSA0PC90ZXh0Pjwvc3ZnPg==" alt="Memory 4">
+            </div>
+        </div>
+        
+        <button class="button" id="surpriseBtn">Click for a Surprise!</button>
+        
+        <div class="hidden-message" id="hiddenMessage">
+            <p>I love you more than words can express. You make every day brighter just by being in it. Here's to many more birthdays together! <span class="heart">❤️</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Create balloons
+        function createBalloons() {
+            const body = document.querySelector('body');
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.animationDelay = Math.random() * 20 + 's';
+                body.appendChild(balloon);
+            }
+        }
+        
+        // Fireworks effect
+        function createFireworks() {
+            const fireworks = document.getElementById('fireworks');
+            const colors = ['#ff6b6b', '#ff8e8e', '#ffaaaa', '#ffc6c6', '#ffe2e2'];
+            
+            setInterval(() => {
+                const firework = document.createElement('div');
+                firework.style.position = 'absolute';
+                firework.style.left = Math.random() * 100 + 'vw';
+                firework.style.top = Math.random() * 100 + 'vh';
+                firework.style.width = '4px';
+                firework.style.height = '4px';
+                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                firework.style.borderRadius = '50%';
+                firework.style.boxShadow = '0 0 10px 2px ' + colors[Math.floor(Math.random() * colors.length)];
+                firework.style.animation = 'fadeOut 1s forwards';
+                
+                fireworks.appendChild(firework);
+                
+                setTimeout(() => {
+                    firework.remove();
+                }, 1000);
+            }, 200);
+        }
+        
+        // Add CSS for fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(2); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Surprise button functionality
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            hiddenMessage.classList.toggle('show');
+            
+            // Create additional hearts animation
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.opacity = '0.7';
+                heart.style.zIndex = '5';
+                heart.style.animation = `floatUp ${Math.random() * 3 + 2}s ease-in forwards`;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+            
+            // Add CSS for floatUp animation
+            if (!document.getElementById('floatUpStyle')) {
+                const floatUpStyle = document.createElement('style');
+                floatUpStyle.id = 'floatUpStyle';
+                floatUpStyle.textContent = `
+                    @keyframes floatUp {
+                        0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+                        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(floatUpStyle);
+            }
+        });
+        
+        // Initialize animations
+        window.onload = function() {
+            createBalloons();
+            createFireworks();
+        };
+    </script>
+</body>
+</html>
